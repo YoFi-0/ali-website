@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>4design</title>
+    <script type="text/javascript">
+        function detectLanguageAndRedirect() {
+            var userLang = navigator.language || navigator.userLanguage;
+            if (userLang.startsWith("ar")) {
+                window.location.href = "index_ar.html";
+            } else {
+                window.location.href = "index_en.html";
+            }
+        }
+        detectLanguageAndRedirect();
+    </script>
+</head>
+<body>
+    <p>Please wait while we redirect you based on your language preference...</p>
+    <p><a href="index_ar.html">العربية (Arabic)</a> | <a href="index_en.html">English</a></p>
+</body>
+</html>

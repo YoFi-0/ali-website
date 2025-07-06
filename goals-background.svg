@@ -1,0 +1,21 @@
+<svg width="200" height="200" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <pattern id="goalsPattern" patternUnits="userSpaceOnUse" width="50" height="50">
+            <rect width="50" height="50" fill="#050A30"/>
+            <!-- Upward pointing chevrons/arrows -->
+            <path d="M10 40 L25 25 L40 40" stroke="#034a65" stroke-width="2" fill="none" opacity="0.7">
+                <animateTransform attributeName="transform" type="translate" values="0 0; 0 -10; 0 0" dur="4s" begin="0s" repeatCount="indefinite"/>
+                <animate attributeName="opacity" values="0.7;1;0.7" dur="4s" begin="0s" repeatCount="indefinite" />
+            </path>
+            <path d="M10 30 L25 15 L40 30" stroke="#183169" stroke-width="2" fill="none" opacity="0.5">
+                <animateTransform attributeName="transform" type="translate" values="0 0; 0 -10; 0 0" dur="4s" begin="1s" repeatCount="indefinite"/>
+                <animate attributeName="opacity" values="0.5;0.8;0.5" dur="4s" begin="1s" repeatCount="indefinite" />
+            </path>
+             <path d="M10 20 L25 5 L40 20" stroke="#afb4be" stroke-width="1.5" fill="none" opacity="0.4">
+                <animateTransform attributeName="transform" type="translate" values="0 0; 0 -10; 0 0" dur="4s" begin="2s" repeatCount="indefinite"/>
+                <animate attributeName="opacity" values="0.4;0.7;0.4" dur="4s" begin="2s" repeatCount="indefinite" />
+            </path>
+        </pattern>
+    </defs>
+    <rect width="100%" height="100%" fill="url(#goalsPattern)"/>
+</svg>

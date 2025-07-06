@@ -1,0 +1,1148 @@
+/* General Styles */
+:root {
+    --primary-color: #050A30;       /* Deep Navy - Main, Headers, Dark Backgrounds */
+    --secondary-color: #034a65;     /* Rich Teal Blue - Contrasting Backgrounds, Accents */
+    --accent-color: #183169;        /* Muted Indigo - CTA, Links, Highlights */
+    --neutral-color: #afb4be;       /* Cool Gray - Subtext, Borders, Subtle Elements */
+    --text-color-light: #f0f4f8;    /* Off-White - Text on dark backgrounds */
+    --text-color-dark: #2c3e50;     /* Dark Slate - Main body text on light backgrounds */
+    --background-light: #f8f9fa;    /* Very Light Gray - Main page background */
+    --background-medium: #e9ecef;   /* Light Gray - Alternate section backgrounds */
+    --op: #aaff00;
+    /* Additional Accent for specific highlights if needed, but stick to the main palette first */
+    /* --highlight-accent: #4A90E2; */ /* A brighter blue for specific callouts if necessary */
+}
+
+body {
+    font-family: 'Cairo', 'Tajawal', sans-serif; /* Modern Arabic fonts */
+    margin: 0;
+    padding: 0;
+    line-height: 1.7; /* Increased for better readability */
+    background-color: var(--background-light);
+    color: var(--text-color-dark);
+    direction: rtl;
+    scroll-padding-top: 70px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+    color: var(--primary-color);
+    font-family: 'Cairo', sans-serif;
+}
+
+p {
+    margin-bottom: 1.2rem; /* Slightly more spacing */
+    font-family: 'Tajawal', sans-serif;
+    font-size: 1.1rem; /* Enhanced readability */
+    line-height: 1.8; /* Enhanced readability */
+}
+
+a {
+    color: var(--accent-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--secondary-color);
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Enhanced Header & Navigation */
+header {
+    background-color: rgb(5, 10, 48); /* Dark Blue - No transparency */
+    color: var(--text-color-light);
+    padding: 0.8rem 0; /* Slightly reduced padding */
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2); /* More pronounced shadow */
+    transition: background-color 0.3s ease;
+}
+
+header nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+header .logo h1 {
+    margin: 0;
+    font-size: 1.9rem; /* Slightly larger */
+    color: var(--text-color-light);
+    font-weight: 700;
+}
+header .logo p {
+    margin: 0;
+    font-size: 0.85rem; /* Slightly smaller */
+    color: var(--neutral-color);
+    font-style: italic;
+}
+
+header nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center; /* Vertically align items */
+}
+
+header nav ul li {
+    margin-right: 25px; /* Increased spacing, Changed from margin-left for RTL */
+}
+
+header nav ul li:last-child {
+    margin-right: 0;
+}
+
+header nav ul li a {
+    color: var(--text-color-light);
+    font-weight: 500;
+    padding: 8px 15px; /* Adjusted padding for a better look */
+    border-radius: 5px; /* Softer radius */
+    transition: background-color 0.3s ease, color 0.3s ease;
+    position: relative; /* For underline animation */
+}
+
+header nav ul li a::after { /* Underline animation */
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -2px;
+    right: 0; /* Start from right for RTL */
+    background-color: var(--neutral-color);
+    transition: width 0.3s ease;
+}
+html[dir="rtl"] header nav ul li a::after {
+    right: 0;
+    left: auto;
+}
+
+
+header nav ul li a:hover::after,
+header nav ul li a.active-link::after {
+    width: 100%;
+}
+
+
+header nav ul li a:hover,
+header nav ul li a.active-link {
+    background-color: transparent; /* Keep background transparent on hover for underline effect */
+    color: var(--neutral-color); /* Change text color on hover */
+}
+
+/* Mobile Navigation Toggle (Burger Menu) */
+.mobile-nav-toggle {
+    display: none; /* Hidden by default */
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 1001; /* Above nav ul */
+}
+
+.hamburger-icon {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: var(--text-color-light);
+    position: relative;
+    transition: background-color 0.3s ease;
+}
+
+.hamburger-icon::before,
+.hamburger-icon::after {
+    content: '';
+    position: absolute;
+    width: 25px;
+    height: 3px;
+    background-color: var(--text-color-light);
+    right: 0; /* Adjusted for RTL */
+    transition: transform 0.3s ease, top 0.3s ease, bottom 0.3s ease;
+}
+html[dir="rtl"] .hamburger-icon::before,
+html[dir="rtl"] .hamburger-icon::after {
+    right: 0;
+    left:auto;
+}
+
+.hamburger-icon::before {
+    top: -8px;
+}
+
+.hamburger-icon::after {
+    bottom: -8px;
+}
+
+/* Burger animation to X */
+.mobile-nav-toggle.toggle-animate .hamburger-icon {
+    background-color: transparent; /* Middle line disappears */
+}
+
+.mobile-nav-toggle.toggle-animate .hamburger-icon::before {
+    top: 0;
+    transform: rotate(45deg);
+}
+
+.mobile-nav-toggle.toggle-animate .hamburger-icon::after {
+    bottom: 0;
+    transform: rotate(-45deg);
+}
+
+/* .container class is defined below within general styles, removing this duplicate */
+
+/* Main Content Sections */
+main {
+    padding-top: 70px; /* Match scroll-padding-top */
+}
+
+section.section-padding { /* Renamed for clarity */
+    padding: 80px 0; /* Increased vertical padding */
+    text-align: center;
+    opacity: 0;
+    transform: translateY(30px); /* Slightly more pronounced entry */
+    transition: opacity 0.9s ease-out, transform 0.9s ease-out;
+}
+
+/* Default section background (light) */
+section:nth-child(odd).section-padding { /* Target odd sections for a specific light bg if needed, or keep all non-colored light */
+    background-color: var(--background-light); /* Or var(--text-color-light) if that's the intended white */
+}
+/* Alternate light background for variation if desired */
+/* section:nth-child(even of .section-padding:not(.colored-section)) {
+    background-color: var(--background-medium);
+} */
+
+
+section.colored-section {
+    background: linear-gradient(135deg, var(--secondary-color) 0%, var(--primary-color) 100%);
+    /* background-color: var(--secondary-color); */ /* Fallback if gradient not supported or too much */
+    color: var(--text-color-light);
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.2); /* Subtle inner shadow for depth */
+}
+section.colored-section h2,
+section.colored-section h3,
+section.colored-section p,
+section.colored-section .service-item p { /* Ensure all text is light */
+    color: var(--text-color-light);
+}
+section.colored-section .service-item {
+    background-color: rgba(255, 255, 255, 0.08); /* Slightly more visible item bg */
+    border-color: var(--neutral-color); /* Border for items on dark bg */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+section.colored-section .service-item:hover {
+     background-color: rgba(255, 255, 255, 0.12);
+     border-right-color: var(--text-color-light); /* Brighter border on hover */
+}
+html[dir="rtl"] section.colored-section .service-item:hover {
+    border-right-color: var(--text-color-light);
+    border-left-color: transparent;
+}
+html[dir="ltr"] section.colored-section .service-item:hover {
+    border-left-color: var(--text-color-light);
+    border-right-color: transparent;
+}
+
+section.colored-section .service-item h3 {
+    color: var(--text-color-light); /* Ensure h3 is light */
+}
+section.colored-section .service-icon {
+    color: var(--neutral-color);
+}
+section.colored-section .service-item:hover .service-icon {
+    color: var(--text-color-light); /* Icon becomes brighter on hover */
+}
+
+
+section h2 {
+    font-size: 2.8rem; /* Slightly larger titles */
+    margin-bottom: 40px; /* Increased margin */
+    position: relative;
+    display: inline-block;
+    padding-bottom: 10px; /* Space for underline */
+}
+
+section h2 .icon-before {
+    margin-left: 10px; /* For RTL, icon is to the right of text */
+    font-size: 0.9em; /* Relative to h2 size */
+    color: var(--accent-color);
+}
+html[dir="rtl"] section h2 .icon-before {
+    margin-left: 0;
+    margin-right: 10px;
+}
+section.colored-section h2 .icon-before {
+    color: var(--neutral-color); /* Icon color on dark sections */
+}
+
+
+section h2::after {
+    content: '';
+    display: block;
+    width: 80px; /* Wider underline */
+    height: 4px; /* Thicker underline */
+    background-color: var(--accent-color);
+    margin: 15px auto 0; /* Adjusted margin */
+    border-radius: 2px;
+}
+section.colored-section h2::after {
+    background-color: var(--neutral-color); /* Underline color on dark sections */
+}
+
+.content {
+    max-width: 900px; /* Wider content area */
+    margin: 0 auto;
+    text-align: right;
+}
+.content.centered-content {
+    text-align: center;
+    max-width: 750px;
+}
+.content .text-content {
+     margin-bottom: 25px;
+}
+
+/* Content Grid for side-by-side text/image */
+.content-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+    text-align: right;
+}
+html[dir="rtl"] .content-grid {
+    text-align: right;
+}
+html[dir="ltr"] .content-grid {
+    text-align: left;
+}
+.content-grid .image-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+
+/* Hero Section Enhanced */
+#hero {
+    /* background: linear-gradient(135deg, rgba(5, 10, 48, 0.88) 0%, rgba(3, 74, 101, 0.82) 100%), url('https://via.placeholder.com/1920x1080/041C32/FFFFFF?text=Dynamic+Business+Solutions'); */ /* Commented out, video is the background */
+    /* background-size: cover; */
+    /* background-position: center center; */
+    /* background-attachment: fixed; */
+    color: var(--text-color-light);
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden; /* For potential pseudo-element animations */
+}
+#hero::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    /* background: radial-gradient(ellipse at center, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 70%); */
+    /* opacity: 0.5; */
+    /* z-index: 0; */
+}
+
+.video-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 0; /* Behind hero content */
+}
+
+.video-background video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Cover the area, cropping if needed */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+#hero > * { /* Ensure direct children of hero are above the video */
+    position: relative;
+    z-index: 1;
+}
+
+#hero h2 {
+    font-size: 4rem; /* Even larger for impact */
+    margin-bottom: 20px;
+    color: var(--text-color-light);
+    font-weight: 800; /* Bolder */
+    text-shadow: 0 2px 8px rgba(0,0,0,0.5); /* Stronger shadow */
+}
+#hero h2::after{
+    background-color: var(--neutral-color);
+    width: 120px; /* Wider underline */
+    height: 4px;  /* Thicker underline */
+    opacity: 0.8;
+}
+
+#hero p {
+    font-size: 1.5rem;
+    margin-bottom: 40px;
+    max-width: 750px; /* Wider text block */
+    color: var(--neutral-color); /* Use neutral for sub-headings on dark */
+    font-weight: 300; /* Lighter weight for subtitle */
+}
+
+.cta-button {
+    background-color: var(--accent-color); /* Primary CTA color */
+    color: var(--text-color-light);
+    padding: 16px 40px; /* Generous padding */
+    border-radius: 50px; /* Pill shape */
+    font-size: 1.25rem;
+    font-weight: 600; /* Semi-bold */
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    transition: background-color 0.3s ease,
+                transform 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55),
+                box-shadow 0.3s ease;
+    box-shadow: 0 5px 15px rgba(24, 49, 105, 0.4); /* Shadow matching accent color */
+}
+
+.cta-button:hover {
+    background-color: var(--secondary-color); /* Hover to secondary */
+    transform: translateY(-6px) scale(1.05);
+    box-shadow: 0 8px 20px rgba(3, 74, 101, 0.5); /* Shadow matching secondary */
+    color: var(--text-color-light);
+}
+
+/* Services Section Enhanced - ensure it uses background-medium if it's an "even" section or specific class */
+#services.section-padding { /* Example: if #services is always on a lighter, non-colored bg */
+    background-color: var(--background-medium);
+}
+
+.service-item {
+    background-color: var(--text-color-light); /* White background for items on light/medium page bg */
+    padding: 35px;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(44, 62, 80, 0.1); /* Softer, more diffused shadow */
+    transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1),
+                box-shadow 0.4s cubic-bezier(0.23, 1, 0.32, 1),
+                border-color 0.3s ease;
+    border-right: 6px solid var(--secondary-color); /* Use secondary as default border */
+    border-left: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+/* RTL specific for service item border */
+html[dir="rtl"] .service-item {
+    border-right: 6px solid var(--secondary-color);
+    border-left: none;
+}
+html[dir="ltr"] .service-item {
+    border-left: 6px solid var(--secondary-color);
+    border-right: none;
+}
+
+.service-item:hover {
+    box-shadow: 0 12px 35px rgba(44, 62, 80, 0.15);
+    border-right-color: var(--accent-color); /* Change to accent on hover */
+}
+html[dir="rtl"] .service-item:hover {
+    border-right-color: var(--accent-color);
+    border-left-color: transparent;
+}
+html[dir="ltr"] .service-item:hover {
+    border-left-color: var(--accent-color);
+    border-right-color: transparent;
+}
+
+.service-icon {
+    font-size: 2.8rem; /* Larger icons */
+    color: var(--accent-color); /* Icons use accent color */
+    margin-bottom: 25px;
+    transition: transform 0.3s ease-in-out;
+}
+.service-item:hover .service-icon {
+    transform: scale(1.15) rotate(7deg);
+    color: var(--secondary-color); /* Icon color changes on hover */
+}
+
+.service-item h3 {
+    color: var(--primary-color); /* Titles on light bg use primary */
+    font-size: 1.6rem;
+    margin-bottom: 15px;
+    cursor: default;
+}
+.service-item p {
+    font-size: 1.05rem;
+    color: var(--text-color-dark); /* Paragraphs on light bg use dark text */
+    line-height: 1.7;
+    cursor: default;
+}
+
+
+/* Portfolio Section Enhanced */
+#portfolio.section-padding { /* Example: if #portfolio is on the default light background */
+    background-color: var(--background-light);
+}
+#portfolio .placeholder-text {
+    font-style: normal; /* Less italic, more direct */
+    color: var(--text-color-dark);
+    opacity: 0.8;
+    font-size: 1.15rem;
+    margin-bottom: 35px;
+}
+/* ... (portfolio grid and item styles remain largely the same, ensure colors fit the section bg) ... */
+.portfolio-item {
+    background-color: var(--text-color-light); /* White background for items */
+    /* ... other styles */
+}
+.portfolio-info h3 {
+    color: var(--primary-color);
+}
+.portfolio-info p {
+    color: var(--text-color-dark);
+    opacity: 0.9;
+}
+
+
+/* Contact Section Enhanced */
+#contact.section-padding {
+     background-color: var(--background-medium); /* Example: Contact on a medium light background */
+}
+#contact .contact-info ul {
+    list-style: none;
+    padding: 0;
+    max-width: 550px;
+    margin: 35px auto 0;
+    text-align: right;
+}
+
+#contact .contact-info ul li {
+    margin-bottom: 25px;
+    font-size: 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+html[dir="ltr"] #contact .contact-info ul li {
+    justify-content: flex-start;
+}
+
+#contact .contact-info ul li i {
+    font-size: 1.7rem; /* Larger contact icons */
+    margin-left: 20px;
+    color: var(--secondary-color); /* Icons use secondary color */
+    transition: transform 0.3s ease-in-out, color 0.3s ease;
+}
+html[dir="rtl"] #contact .contact-info ul li i { margin-left: 0; margin-right: 20px; }
+html[dir="ltr"] #contact .contact-info ul li i { margin-left: 0; margin-right: 20px; }
+
+#contact .contact-info ul li a {
+    font-weight: 500;
+    color: var(--text-color-dark);
+    transition: color 0.3s ease;
+}
+#contact .contact-info ul li a:hover {
+    color: var(--accent-color); /* Link text to accent on hover */
+}
+#contact .contact-info ul li a:hover i {
+    transform: scale(1.2) rotate(-5deg);
+    color: var(--accent-color); /* Icon to accent on hover */
+}
+
+
+/* Footer Enhanced */
+.footer-enhanced {
+    background: var(--primary-color); /* Solid primary color for footer */
+    color: var(--neutral-color);
+    text-align: center;
+    padding: 50px 20px;
+    font-size: 1rem;
+    margin-top: 0; /* Remove margin if sections directly above have enough padding */
+    border-top: 3px solid var(--secondary-color); /* Accent border */
+}
+.footer-enhanced p {
+    margin: 0;
+    color: var(--neutral-color);
+    opacity: 0.9;
+}
+.footer-enhanced a {
+    color: var(--text-color-light);
+    text-decoration: none; /* Remove underline by default */
+    border-bottom: 1px dashed var(--neutral-color); /* Subtle dashed underline */
+    transition: color 0.3s ease, border-bottom-color 0.3s ease;
+}
+.footer-enhanced a:hover {
+    color: var(--text-color-light);
+    border-bottom-color: var(--text-color-light); /* Solid underline on hover */
+}
+
+
+/* Animations & Transitions */
+/* General fade-in for sections (already implemented, ensure it's smooth) */
+section.section-padding {
+    /* ... existing styles ... */
+    transition: opacity 0.8s cubic-bezier(0.645, 0.045, 0.355, 1), transform 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.animated { /* Class added by JS */
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+    
+}
+#hero{
+    height: 100vh;
+    position: relative;
+    z-index: 1;
+    background: var(--accent-color);
+}
+#hero .info{
+    z-index: 2;
+     background: var(--accent-color);
+     opacity: 0.7;
+     width: 100%;
+     height: 100%;
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+}
+#hero .video-background{
+    z-index: 1;
+    position: absolute;
+}
+#hero .info p {
+    background: #000;
+    padding: 0 20px;
+}
+
+#hero .info a{
+    background: #FFF;
+    color: #000;
+}
+
+/* Hover effect for service items (already has transform and shadow) */
+.service-item {
+    /* ... existing styles ... */
+    transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1),
+                box-shadow 0.4s cubic-bezier(0.23, 1, 0.32, 1),
+                border-color 0.3s ease; /* Smooth border color transition if changed on hover */
+}
+.service-item:hover {
+    /* ... existing styles ... */
+    border-right-color: var(--accent-color); /* Example: change border color on hover */
+}
+html[dir="rtl"] .service-item:hover {
+    border-right-color: var(--accent-color);
+    border-left-color: transparent;
+}
+html[dir="ltr"] .service-item:hover {
+    border-left-color: var(--accent-color);
+    border-right-color: transparent;
+}
+
+
+/* CTA Button hover (already has transform and shadow) */
+.cta-button {
+    /* ... existing styles ... */
+    transition: background-color 0.3s ease,
+                transform 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55), /* More bouncy */
+                box-shadow 0.3s ease;
+}
+.cta-button:hover {
+    /* ... existing styles ... */
+     transform: translateY(-5px) scale(1.08); /* Slightly more bounce */
+}
+
+
+/* Navigation link hover (already has underline) */
+header nav ul li a {
+    /* ... existing styles ... */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Keep existing */
+}
+header nav ul li a::after {
+    /* ... existing styles ... */
+    transition: width 0.4s cubic-bezier(0.23, 1, 0.32, 1); /* Smoother underline */
+}
+
+/* Parallax-like effect for hero (already set with background-attachment: fixed) */
+/* This is a simple CSS parallax. For more advanced, JS would be needed. */
+
+/* Icon animations */
+.icon-before, .service-icon, #contact .contact-info ul li i {
+    transition: transform 0.3s ease-in-out;
+}
+section:hover .icon-before, /* Example: Animate section icon on section hover */
+.service-item:hover .service-icon,
+#contact .contact-info ul li a:hover i {
+    transform: scale(1.15) rotate(3deg); /* Subtle scale and rotate */
+}
+#contact .contact-info ul li a:hover i {
+    transform: scale(1.2) rotate(-3deg); /* Different rotation for contact icons */
+}
+
+
+/* Subtle background animations or transitions on colored sections */
+section.colored-section {
+    /* ... existing styles ... */
+    transition: background-color 0.5s ease-in-out; /* If you plan to change bg on some event */
+}
+/* Example: Slightly change bg on hover (can be distracting, use with care) */
+/*
+section.colored-section:hover {
+    background-color: #044058;
+}
+*/
+
+/* Portfolio Item Hover (if portfolio items are added) */
+.portfolio-item {
+    /* ... existing styles ... */
+    transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1),
+                box-shadow 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.portfolio-item:hover {
+    transform: translateY(-10px) scale(1.03);
+    box-shadow: 0 12px 35px rgba(0,0,0,0.2);
+}
+.portfolio-item img {
+    transition: transform 0.4s ease-in-out;
+}
+.portfolio-item:hover img {
+    transform: scale(1.1); /* Zoom image on hover */
+}
+
+
+/* Responsive Design */
+@media (max-width: 992px) { /* Adjusted breakpoint for tablets and larger phones */
+    .content-grid {
+        grid-template-columns: 1fr; /* Stack image and text */
+    }
+    .content-grid .image-content {
+        order: -1; /* Image on top in mobile for sections like "About" */
+        margin-bottom: 30px;
+    }
+    html[dir="rtl"] .content-grid .text-content,
+    html[dir="ltr"] .content-grid .text-content {
+        text-align: center; /* Center text when stacked */
+    }
+}
+
+.services-grid{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+@media (max-width: 768px) {
+    body {
+        scroll-padding-top: 60px; /* Adjust for potentially smaller fixed header */
+    }
+    header nav ul {
+        display: none;
+        flex-direction: column;
+        position: fixed; /* Changed to fixed to overlay content */
+        top: 0; /* Start from top */
+        right: 0;
+        left: auto;
+        background-color: rgba(5, 10, 48, 0.98); /* Slightly more opaque */
+        width: 80%; /* Wider mobile menu */
+        max-width: 300px; /* Max width for menu */
+        height: 100vh; /* Full viewport height */
+        padding-top: 70px; /* Space for close button or logo if moved inside */
+        /* box-shadow: -3px 0 10px rgba(0,0,0,0.3); */ /* Adjusted below for LTR/RTL */
+        /* transform: translateX(100%); */ /* Adjusted below for LTR/RTL */
+        transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55); /* More playful animation */
+        overflow-y: auto; /* Allow scrolling if menu is long */
+    }
+    html[dir="rtl"] header nav ul {
+        right: 0;
+        left: auto;
+        transform: translateX(100%);
+        box-shadow: -3px 0 10px rgba(0,0,0,0.3);
+    }
+    html[dir="ltr"] header nav ul {
+        left: 0;
+        right: auto;
+        transform: translateX(-100%);
+        box-shadow: 3px 0 10px rgba(0,0,0,0.3);
+    }
+
+    header nav ul.nav-active {
+        display: flex;
+        transform: translateX(0) !important; /* Ensure it overrides initial transform */
+    }
+
+    header nav ul li {
+        margin: 0;
+        width: 100%;
+    }
+
+    header nav ul li a {
+        display: block;
+        padding: 18px 25px; /* Increased padding for easier tapping */
+        width: 100%;
+        text-align: right; /* Align text to right for RTL */
+        border-bottom: 1px solid rgba(175, 180, 190, 0.1); /* Lighter separator */
+        font-size: 1.1rem; /* Larger font for mobile nav */
+    }
+    html[dir="rtl"] header nav ul li a { text-align: right; }
+    html[dir="ltr"] header nav ul li a { text-align: left; }
+
+     header nav ul li a::after { display: none; }
+
+    header nav ul li a:hover,
+    header nav ul li a.active-link {
+        background-color: var(--accent-color); /* Use accent for hover in mobile */
+        color: var(--text-color-light);
+    }
+
+    .mobile-nav-toggle { display: block; }
+
+    #hero h2 {
+        font-size: 2.5rem; /* Adjusted hero title for mobile */
+    }
+    #hero p {
+        font-size: 1.1rem; /* Adjusted hero subtitle for mobile */
+    }
+
+    section.section-padding {
+        padding: 60px 0; /* Reduced padding for sections on mobile */
+    }
+    section h2 {
+        font-size: 2.2rem; /* Adjusted section titles for mobile */
+    }
+    section h2 .icon-before {
+        font-size: 0.8em;
+    }
+
+    .services-grid {
+        grid-template-columns: 1fr;
+        display: flex;
+    }
+    .service-item {
+        padding: 25px; 
+        width: 100%;/* Adjust service item padding */
+    }
+    .service-icon {
+        font-size: 2rem; /* Adjust service icon size */
+    }
+    .service-item h3 {
+        font-size: 1.3rem; /* Adjust service item title size */
+    }
+
+    main {
+        padding-top: 60px;
+    }
+}
+
+@media (max-width: 480px) {
+    header .logo h1 {
+        font-size: 1.6rem; /* Smaller logo for very small screens */
+    }
+    header .logo p {
+        font-size: 0.75rem;
+    }
+    #hero h2 {
+        font-size: 2rem;
+    }
+    #hero p {
+        font-size: 1rem;
+    }
+    .cta-button {
+        padding: 12px 28px; /* Adjust CTA button padding */
+        font-size: 1rem;
+    }
+    section h2 {
+        font-size: 1.9rem;
+    }
+}
+
+/* Add a class for the active navigation link */
+.active-link {
+    background-color: var(--secondary-color) !important;
+    color: var(--text-color-light) !important;
+}
+
+/* Mission Section Image Styling */
+#mission .content-grid {
+    align-items: center; /* Vertically align text and image if they have different heights */
+}
+#mission .image-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    margin-top: 20px; /* Add some space if stacked on mobile */
+}
+
+@media (min-width: 993px) { /* Apply side-by-side only on larger screens */
+    #mission .content-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr; /* Create two equal columns */
+        gap: 40px; /* Space between text and image */
+        text-align: right; /* Default for RTL */
+    }
+    html[dir="ltr"] #mission .content-grid {
+        text-align: left;
+    }
+    #mission .image-content img {
+        margin-top: 0; /* Reset margin if side-by-side */
+    }
+    html[dir="rtl"] #mission .image-content {
+        order: 1; /* Image on the left in RTL */
+    }
+     html[dir="ltr"] #mission .image-content {
+        order: 2; /* Image on the right in LTR */
+    }
+    html[dir="rtl"] #mission .text-content {
+        order: 2; /* Text on the right in RTL */
+    }
+    html[dir="ltr"] #mission .text-content {
+        order: 1; /* Text on the left in LTR */
+    }
+}
+
+
+/* Smooth scroll behavior */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Animated SVG Backgrounds */
+.svg-bg-bubbles {
+    background-image: url('bubbles.svg');
+    background-size: cover; /* Or 'contain', or specific size */
+    position: relative; /* For potential pseudo-elements or z-indexing */
+    z-index: 0;
+}
+
+.svg-bg-tic-tac-toe {
+    background-image: url('tic-tac-toe.svg');
+    background-size: auto; /* Let the pattern repeat */
+    position: relative;
+    z-index: 0;
+}
+
+.svg-bg-rain-streaks {
+    background-image: url('rain-streaks.svg');
+    background-size: cover; /* Or 'contain', or specific size */
+    position: relative;
+    z-index: 0;
+}
+
+/* Ensure content is above the background */
+.section-padding > .container {
+    position: relative;
+    z-index: 1;
+}
+
+/* Adjust colored sections if SVG background replaces gradient */
+#vision.svg-bg-bubbles, #goals.svg-bg-rain-streaks {
+    /* The SVG itself contains the background color from its pattern definition,
+       so we might not need to remove the original gradient if the SVG covers it.
+       However, if the SVG has transparency and is meant to sit on a solid color
+       defined in its pattern, this approach is fine.
+       If the SVG is an overlay on the existing gradient, we'd use a pseudo-element.
+       For simplicity, assuming SVG replaces the section's direct background for now. */
+}
+
+
+/* Bubbles Animation */
+@keyframes floatBubbles {
+    0% {
+        background-position: 0 0;
+        opacity: 0.7; /* Opacity of the whole background if needed, or target elements in SVG */
+    }
+    50% {
+        opacity: 0.9;
+    }
+    100% {
+        background-position: 0 -100px; /* Adjust distance for desired speed */
+        opacity: 0.7;
+    }
+}
+
+.svg-bg-bubbles {
+    animation: floatBubbles 20s linear infinite; /* Slow, continuous floating */
+}
+
+/* Tic-Tac-Toe Animation */
+@keyframes moveTicTacToe {
+    0% { background-position: 0 0; }
+    100% { background-position: 20px 20px; } /* Corresponds to pattern width/height for seamless loop */
+}
+
+.svg-bg-tic-tac-toe {
+    animation: moveTicTacToe 15s linear infinite;
+}
+
+/* Rain Streaks Animation */
+@keyframes fallRain {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: 0 100px; /* Adjust for speed, matches pattern height for loop */
+    }
+}
+
+.svg-bg-rain-streaks {
+    animation: fallRain 5s linear infinite;
+}
+
+/* Ensure animations are subtle and don't overpower content */
+/* Consider `prefers-reduced-motion` media query for users who prefer less animation */
+@media (prefers-reduced-motion: reduce) {
+  .svg-bg-bubbles,
+  .svg-bg-tic-tac-toe,
+  .svg-bg-rain-streaks {
+    animation: none;
+  }
+}
+
+
+/* header animation */
+.area{
+    background: #4e54c8;  
+    background: -webkit-linear-gradient(to left, var(--accent-color), var(--op));  
+    width: 100%;
+    height:100vh;
+    
+   
+}
+
+.circles{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.circles li{
+    position: absolute;
+    display: block;
+    list-style: none;
+    width: 20px;
+    height: 20px;
+    background: var(--background-light);
+    animation: animate 25s linear infinite;
+    bottom: -150px;
+    
+}
+
+.circles li:nth-child(1){
+    left: 25%;
+    width: 80px;
+    height: 80px;
+    animation-delay: 0s;
+}
+
+
+.circles li:nth-child(2){
+    left: 10%;
+    width: 20px;
+    height: 20px;
+    animation-delay: 2s;
+    animation-duration: 12s;
+}
+
+.circles li:nth-child(3){
+    left: 70%;
+    width: 20px;
+    height: 20px;
+    animation-delay: 4s;
+}
+
+.circles li:nth-child(4){
+    left: 40%;
+    width: 60px;
+    height: 60px;
+    animation-delay: 0s;
+    animation-duration: 18s;
+}
+
+.circles li:nth-child(5){
+    left: 65%;
+    width: 20px;
+    height: 20px;
+    animation-delay: 0s;
+}
+
+.circles li:nth-child(6){
+    left: 75%;
+    width: 110px;
+    height: 110px;
+    animation-delay: 3s;
+}
+
+.circles li:nth-child(7){
+    left: 35%;
+    width: 150px;
+    height: 150px;
+    animation-delay: 7s;
+}
+
+.circles li:nth-child(8){
+    left: 50%;
+    width: 25px;
+    height: 25px;
+    animation-delay: 15s;
+    animation-duration: 45s;
+}
+
+.circles li:nth-child(9){
+    left: 20%;
+    width: 15px;
+    height: 15px;
+    animation-delay: 2s;
+    animation-duration: 35s;
+}
+
+.circles li:nth-child(10){
+    left: 85%;
+    width: 150px;
+    height: 150px;
+    animation-delay: 0s;
+    animation-duration: 11s;
+}
+
+
+
+@keyframes animate {
+
+    0%{
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+        border-radius: 0;
+    }
+
+    100%{
+        transform: translateY(-1000px) rotate(720deg);
+        opacity: 0;
+        border-radius: 50%;
+    }
+
+}
